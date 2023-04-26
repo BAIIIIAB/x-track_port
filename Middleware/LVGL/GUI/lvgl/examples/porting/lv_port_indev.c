@@ -4,14 +4,13 @@
  */
 
  /*Copy this file as "lv_port_indev.c" and set this value to "1" to enable content*/
-#if 1
+#if 0
 
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_port_indev.h"
+#include "lv_port_indev_template.h"
 #include "../../lvgl.h"
-#include "touch.h"
 
 /*********************
  *      DEFINES
@@ -24,8 +23,6 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-
- extern uint16_t touch_ad_x,touch_ad_y;
 
 static void touchpad_init(void);
 static void touchpad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
@@ -186,17 +183,6 @@ void lv_port_indev_init(void)
 static void touchpad_init(void)
 {
     /*Your code comes here*/
-    static lv_coord_t last_x = 0;
-    static lv_coord_t last_y = 0;
-    if(touch_scan()) {
-    touchpad_get_xy(&last_x, &last_y);
-        data->state = LV_INDEV_STATE_PR;
-    } else {
-        data->state = LV_INDEV_STATE_REL;
-    }
-    /* set the last pressed coordinates */
-    data->point.x = last_x;
-    data->point.y = last_y;
 }
 
 /*Will be called by the library to read the touchpad*/
@@ -230,9 +216,9 @@ static bool touchpad_is_pressed(void)
 static void touchpad_get_xy(lv_coord_t * x, lv_coord_t * y)
 {
     /*Your code comes here*/
-    (*x) = touch_coordinate_x_get(touch_ad_x);
-    (*y) = LCD_Y - touch_coordinate_y_get(touch_ad_y);
 
+    (*x) = 0;
+    (*y) = 0;
 }
 
 /*------------------

@@ -1,11 +1,8 @@
 #include "touch.h"
 #include "stdio.h"
 #include "string.h" 
-#include "math.h"
-#include <stdlib.h>
 
 _m_tp_dev tp_dev;
-
 
 void delay_1us(uint16_t us)
 {
@@ -20,13 +17,13 @@ void delay_1us(uint16_t us)
     }
 }
 
-//ï¿½ï¿½ï¿½ï¿½I2Cï¿½Ù¶Èµï¿½ï¿½ï¿½Ê±
+//¿ØÖÆI2CËÙ¶ÈµÄÑÓÊ±
 void CT_Delay(void)
 {
 	delay_1us(2);
 } 
 
-//ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Ð¾Æ¬IICï¿½Ó¿Ú³ï¿½Ê¼ï¿½ï¿½
+//µçÈÝ´¥ÃþÐ¾Æ¬IIC½Ó¿Ú³õÊ¼»¯
 void CT_IIC_Init(void)
 {			
  		/* enable the led clock */
@@ -40,34 +37,37 @@ void CT_IIC_Init(void)
 	gpio_output_options_set(SDA_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ,SDA_PIN);
 
 }
-//ï¿½ï¿½ï¿½ï¿½IICï¿½ï¿½Ê¼ï¿½Åºï¿½
+
+//²úÉúIICÆðÊ¼ÐÅºÅ
 void CT_IIC_Start(void)
 {
-	CT_SDA_OUT();     //sdaï¿½ï¿½ï¿½ï¿½ï¿½
+	CT_SDA_OUT();     //sdaÏßÊä³ö
 	SDA_ON;	  	  
-	SCL_ON;//SCL=1Ê±ï¿½ï¿½SDAï¿½ï¿½1ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½
+	SCL_ON;//SCL=1Ê±£¬SDAÓÉ1µ½0Ìø±ä
 	delay_1us(30);
  	SDA_OFF;//START:when CLK is high,DATA change form high to low 
 	CT_Delay();
-	SCL_OFF;//Ç¯×¡I2Cï¿½ï¿½ï¿½ß£ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
-}	  
-//ï¿½ï¿½ï¿½ï¿½IICÍ£Ö¹ï¿½Åºï¿½
+	SCL_OFF;//Ç¯×¡I2C×ÜÏß£¬×¼±¸·¢ËÍ»ò½ÓÊÕÊý¾Ý 
+}	 
+
+//²úÉúIICÍ£Ö¹ÐÅºÅ
 void CT_IIC_Stop(void)
 {
-	CT_SDA_OUT();//sdaï¿½ï¿½ï¿½ï¿½ï¿½
-	SCL_ON;//SCL=1Ê±ï¿½ï¿½SDAï¿½ï¿½0ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½
+	CT_SDA_OUT();//sdaÏßÊä³ö
+	SCL_ON;//SCL=1Ê±£¬SDAÓÉ0µ½1Ìø±ä
 	delay_1us(30);
 	SDA_OFF;//STOP:when CLK is high DATA change form low to high
 	CT_Delay();
-	SDA_ON;//ï¿½ï¿½ï¿½ï¿½I2Cï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½Åºï¿½  
+	SDA_ON;//·¢ËÍI2C×ÜÏß½áÊøÐÅºÅ  
 }
-//ï¿½È´ï¿½Ó¦ï¿½ï¿½ï¿½ÅºÅµï¿½ï¿½ï¿½
-//ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê§ï¿½ï¿½
-//        0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½É¹ï¿½
+
+//µÈ´ýÓ¦´ðÐÅºÅµ½À´
+//·µ»ØÖµ£º1£¬½ÓÊÕÓ¦´ðÊ§°Ü
+//        0£¬½ÓÊÕÓ¦´ð³É¹¦
 uint8_t CT_IIC_Wait_Ack(void)
 {
 	uint8_t ucErrTime=0;
-	CT_SDA_IN();      //SDAï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½  
+	CT_SDA_IN();      //SDAÉèÖÃÎªÊäÈë  
 	SDA_ON;	   
 	SCL_ON;
 	CT_Delay();
@@ -81,10 +81,11 @@ uint8_t CT_IIC_Wait_Ack(void)
 		} 
 		CT_Delay();
 	}
-	SCL_OFF;//Ê±ï¿½ï¿½ï¿½ï¿½ï¿½0 	   
+	SCL_OFF;//Ê±ÖÓÊä³ö0 	   
 	return 0;  
 } 
-//ï¿½ï¿½ï¿½ï¿½ACKÓ¦ï¿½ï¿½
+
+//²úÉúACKÓ¦´ð
 void CT_IIC_Ack(void)
 {
 	SCL_OFF;
@@ -96,7 +97,8 @@ void CT_IIC_Ack(void)
 	CT_Delay();
 	SCL_OFF;
 }
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ACKÓ¦ï¿½ï¿½		    
+
+//²»²úÉúACKÓ¦´ð		    
 void CT_IIC_NAck(void)
 {
 	SCL_OFF;
@@ -107,16 +109,17 @@ void CT_IIC_NAck(void)
 	SCL_ON;
 	CT_Delay();
 	SCL_OFF;
-}					 				     
-//IICï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½
-//ï¿½ï¿½ï¿½Ø´Ó»ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½
-//1ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½
-//0ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½			  
+}	
+
+//IIC·¢ËÍÒ»¸ö×Ö½Ú
+//·µ»Ø´Ó»úÓÐÎÞÓ¦´ð
+//1£¬ÓÐÓ¦´ð
+//0£¬ÎÞÓ¦´ð			  
 void CT_IIC_Send_Byte(uint8_t txd)
 {                        
     uint8_t t;   
 	CT_SDA_OUT(); 	    
-  	SCL_OFF;//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ó¿ï¿½Ê¼ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½
+  	SCL_OFF;//À­µÍÊ±ÖÓ¿ªÊ¼Êý¾Ý´«Êä
 	CT_Delay();
 	for(t=0;t<8;t++)
     {              
@@ -138,11 +141,11 @@ void CT_IIC_Send_Byte(uint8_t txd)
 		CT_Delay();
     }	 
 } 	    
-//ï¿½ï¿½1ï¿½ï¿½ï¿½Ö½Ú£ï¿½ack=1Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ACKï¿½ï¿½ack=0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nACK   
+//¶Á1¸ö×Ö½Ú£¬ack=1Ê±£¬·¢ËÍACK£¬ack=0£¬·¢ËÍnACK   
 uint8_t CT_IIC_Read_Byte(unsigned char ack)
 {
 	uint8_t i,receive=0;
- 	CT_SDA_IN();//SDAï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
+ 	CT_SDA_IN();//SDAÉèÖÃÎªÊäÈë
 	delay_1us(30);
 	for(i=0;i<8;i++ )
 	{ 
@@ -156,17 +159,10 @@ uint8_t CT_IIC_Read_Byte(unsigned char ack)
 	}
 	//printf("\r\n receive:%0x \r\n",receive);	  				 
 
-	if (!ack)CT_IIC_NAck();//ï¿½ï¿½ï¿½ï¿½nACK
-	else CT_IIC_Ack(); //ï¿½ï¿½ï¿½ï¿½ACK   
+	if (!ack)CT_IIC_NAck();//·¢ËÍnACK
+	else CT_IIC_Ack(); //·¢ËÍACK   
  	return receive;
 }
-
-
-
-
-
-
-
 
 
 const uint8_t GT1151_CFG_TBL[]=
@@ -228,7 +224,7 @@ void check_sum(void)
 	uint8_t checksumH,checksumL;
 	uint8_t i=0;	
 	for(i=0;i<(sizeof(GT1151_CFG_TBL)-3);i+=2)
-	checksum +=((GT1151_CFG_TBL[i]<<8)|GT1151_CFG_TBL[i+1]);//ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½
+	checksum +=((GT1151_CFG_TBL[i]<<8)|GT1151_CFG_TBL[i+1]);//¼ÆËãÐ£ÑéºÍ
 	//checksum +=(GT1151_CFG_TBL[i]<<8)+GT1151_CFG_TBL[i+1];
 	//checksum =0-checksum;
 	checksum =(~checksum)+1;
@@ -241,88 +237,82 @@ void check_sum(void)
 		
 }
 
-
-
-
-
-
-
-//ï¿½ï¿½ï¿½ï¿½GT5668ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½
-//mode:0,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æµ½flash
-//     1,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æµ½flash
+//·¢ËÍGT1151ÅäÖÃ²ÎÊý
+//mode:0,²ÎÊý²»±£´æµ½flash
+//     1,²ÎÊý±£´æµ½flash
 uint8_t GT1151_Send_Cfg(uint8_t mode)
 {
 	uint16_t checksum=0;
 	uint8_t buf[3];
 	uint8_t i=0;	
 	for(i=0;i<(sizeof(GT1151_CFG_TBL)-3);i+=2)
-	checksum +=((GT1151_CFG_TBL[i]<<8)|GT1151_CFG_TBL[i+1]);//ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½
+	checksum +=((GT1151_CFG_TBL[i]<<8)|GT1151_CFG_TBL[i+1]);//¼ÆËãÐ£ÑéºÍ
 	//checksum +=(GT1151_CFG_TBL[i]<<8)+GT1151_CFG_TBL[i+1];
 	//checksum =0-checksum;
 	checksum =(~checksum)+1;
 	printf("chksum:0x%x,\r\n",checksum);
 	buf[0]= checksum>>8;
 	buf[1]= checksum;
-	buf[2]= mode;	//ï¿½Ç·ï¿½Ð´ï¿½ëµ½GT1151 FLASH?  ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ç±£ï¿½ï¿½
-	GT1151_WR_Reg(GT_CFGS_REG,(uint8_t*)GT1151_CFG_TBL,sizeof(GT1151_CFG_TBL));//ï¿½ï¿½ï¿½Í¼Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	buf[2]= mode;	//ÊÇ·ñÐ´Èëµ½GT1151 FLASH?  ¼´ÊÇ·ñµôµç±£´æ
+	GT1151_WR_Reg(GT_CFGS_REG,(uint8_t*)GT1151_CFG_TBL,sizeof(GT1151_CFG_TBL));//·¢ËÍ¼Ä´æÆ÷ÅäÖÃ
 	return 0;
-	
-
 } 
 
 
 
-//ï¿½ï¿½GT1151Ð´ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-//reg:ï¿½ï¿½Ê¼ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
-//buf:ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-//len:Ð´ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½
-//ï¿½ï¿½ï¿½ï¿½Öµ:0,ï¿½É¹ï¿½;1,Ê§ï¿½ï¿½.
+//ÏòGT1151Ð´ÈëÒ»´ÎÊý¾Ý
+//reg:ÆðÊ¼¼Ä´æÆ÷µØÖ·
+//buf:Êý¾Ý»º»º´æÇø
+//len:Ð´Êý¾Ý³¤¶È
+//·µ»ØÖµ:0,³É¹¦;1,Ê§°Ü.
 uint8_t GT1151_WR_Reg(uint16_t reg,uint8_t *buf,uint8_t len)
 {
 	uint8_t i;
 	uint8_t ret=0;
 	CT_IIC_Start();	
- 	CT_IIC_Send_Byte(GT_CMD_WR);   	//ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ 	  0x28
+ 	CT_IIC_Send_Byte(GT_CMD_WR);   	//·¢ËÍÐ´ÃüÁî 	  0x28
 	CT_IIC_Wait_Ack();
-	CT_IIC_Send_Byte(reg>>8);   	//ï¿½ï¿½ï¿½Í¸ï¿½8Î»ï¿½ï¿½Ö·
+	CT_IIC_Send_Byte(reg>>8);   	//·¢ËÍ¸ß8Î»µØÖ·
 	CT_IIC_Wait_Ack(); 	 										  		   
-	CT_IIC_Send_Byte(reg&0XFF);   	//ï¿½ï¿½ï¿½Íµï¿½8Î»ï¿½ï¿½Ö·
+	CT_IIC_Send_Byte(reg&0XFF);   	//·¢ËÍµÍ8Î»µØÖ·
 	CT_IIC_Wait_Ack();  
 	for(i=0;i<len;i++)
 	{	   
-    CT_IIC_Send_Byte(buf[i]);  	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    CT_IIC_Send_Byte(buf[i]);  	//·¢Êý¾Ý
 		ret=CT_IIC_Wait_Ack();
 		if(ret)break;  
 	}
-    CT_IIC_Stop();					//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½	    
+    CT_IIC_Stop();					//²úÉúÒ»¸öÍ£Ö¹Ìõ¼þ	    
 	return ret; 
 }
-//ï¿½ï¿½GT1151ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-//reg:ï¿½ï¿½Ê¼ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
-//buf:ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-//len:ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½			  
+
+//´ÓGT1151¶Á³öÒ»´ÎÊý¾Ý
+//reg:ÆðÊ¼¼Ä´æÆ÷µØÖ·
+//buf:Êý¾Ý»º»º´æÇø
+//len:¶ÁÊý¾Ý³¤¶È			  
 void GT1151_RD_Reg(uint16_t reg,uint8_t *buf,uint8_t len)
 {
 	uint8_t i; 
  	CT_IIC_Start();	
- 	CT_IIC_Send_Byte(GT_CMD_WR);   //ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ 	0x28 
+ 	CT_IIC_Send_Byte(GT_CMD_WR);   //·¢ËÍÐ´ÃüÁî 	0x28 
 	CT_IIC_Wait_Ack();
- 	CT_IIC_Send_Byte(reg>>8);   	  //ï¿½ï¿½ï¿½Í¸ï¿½8Î»ï¿½ï¿½Ö·
+ 	CT_IIC_Send_Byte(reg>>8);   	  //·¢ËÍ¸ß8Î»µØÖ·
 	CT_IIC_Wait_Ack(); 	 										  		   
- 	CT_IIC_Send_Byte(reg&0XFF);   	//ï¿½ï¿½ï¿½Íµï¿½8Î»ï¿½ï¿½Ö·
+ 	CT_IIC_Send_Byte(reg&0XFF);   	//·¢ËÍµÍ8Î»µØÖ·
 	CT_IIC_Wait_Ack();  
  	CT_IIC_Start();  	 	   
-	CT_IIC_Send_Byte(GT_CMD_RD);   //ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½		    0x29
+	CT_IIC_Send_Byte(GT_CMD_RD);   //·¢ËÍ¶ÁÃüÁî		    0x29
 	CT_IIC_Wait_Ack();	   
 	for(i=0;i<len;i++)
 	{	   
-    	buf[i]=CT_IIC_Read_Byte(i==(len-1)?0:1); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	 
+    	buf[i]=CT_IIC_Read_Byte(i==(len-1)?0:1); //·¢Êý¾Ý	 
 		//printf("buf:%0x %c \r\n",buf[i],buf[i]);   
 	} 
-    CT_IIC_Stop();//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½  
+    CT_IIC_Stop();//²úÉúÒ»¸öÍ£Ö¹Ìõ¼þ  
 } 
-//ï¿½ï¿½Ê¼ï¿½ï¿½GT1151ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-//ï¿½ï¿½ï¿½ï¿½Öµ:0,ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½É¹ï¿½;1,ï¿½ï¿½Ê¼ï¿½ï¿½Ê§ï¿½ï¿½ 
+
+//³õÊ¼»¯GT1151´¥ÃþÆÁ
+//·µ»ØÖµ:0,³õÊ¼»¯³É¹¦;1,³õÊ¼»¯Ê§°Ü 
 uint8_t Cfg_Info1[239] = {0};
 uint8_t GT1151_Init(void)
 {
@@ -332,14 +322,14 @@ uint8_t GT1151_Init(void)
 	buf[0]=0;
 	
 
-//	//PD12ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(RST)
+//	//PD12ÉèÖÃÎªÍÆÍìÊä³ö(RST)
 //	/* enable the led clock */
 //    rcu_periph_clock_enable(RST_RCU);
 //    /* configure led GPIO port */ 
 //    gpio_mode_set(RST_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE,RST_PIN);
 //    gpio_output_options_set(RST_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ,RST_PIN);
 	
-	//PD11ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(INT)
+	//PD11ÉèÖÃÎªÉÏÀ­ÊäÈë(INT)
 	/* enable the led clock */
     rcu_periph_clock_enable(INT_RCU);
     /* configure led GPIO port */ 
@@ -347,31 +337,31 @@ uint8_t GT1151_Init(void)
     gpio_output_options_set(INT_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ,INT_PIN);
 
 
-	CT_IIC_Init();  //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½I2Cï¿½ï¿½ï¿½ï¿½  
-//	RST_OFF;	    //ï¿½ï¿½Î»  
+	CT_IIC_Init();  //³õÊ¼»¯µçÈÝÆÁµÄI2C×ÜÏß  
+//	RST_OFF;	    //¸´Î»  
 //	delay_1ms(10);
-// 	RST_ON;	   //ï¿½Í·Å¸ï¿½Î»		    
+// 	RST_ON;	   //ÊÍ·Å¸´Î»		    
 //	delay_1ms(10); 
 	
 	gpio_mode_set(INT_PORT, GPIO_MODE_INPUT, GPIO_PUPD_NONE,INT_PIN);
 	
 	delay_1ms(100);  
 
-	GT1151_RD_Reg(GT_PID_REG,temp,4);//ï¿½ï¿½È¡ï¿½ï¿½Æ·ID
+	GT1151_RD_Reg(GT_PID_REG,temp,4);//¶ÁÈ¡²úÆ·ID
 	
 	
 	
-	printf("CTP ID:GT%s\r\n",temp);	 //ï¿½ï¿½Ó¡ID
+	printf("CTP ID:GT%s\r\n",temp);	 //´òÓ¡ID
 	 
 	check_sum();
 	
 	if(strcmp((char*)temp,"1158")==0)//ID==1158
 	{
-		GT1151_RD_Reg(GT_CFGS_REG,temp,1);//ï¿½ï¿½È¡GT_CFGS_REGï¿½Ä´ï¿½ï¿½ï¿½		
+		GT1151_RD_Reg(GT_CFGS_REG,temp,1);//¶ÁÈ¡GT_CFGS_REG¼Ä´æÆ÷		
 		printf("Default Ver:0x%x\r\n",temp[0]);				
-		//if(temp[0]<0x60)//Ä¬ï¿½Ï°æ±¾ï¿½È½Ïµï¿½,ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½flashï¿½ï¿½ï¿½ï¿½		
+		//if(temp[0]<0x60)//Ä¬ÈÏ°æ±¾±È½ÏµÍ,ÐèÒª¸üÐÂflashÅäÖÃ		
 		//{
-			//GT1151_Send_Cfg(1);//ï¿½ï¿½ï¿½Â²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			//GT1151_Send_Cfg(1);//¸üÐÂ²¢±£´æÅäÖÃ
 		//}
 		
 		#if 1
@@ -391,10 +381,10 @@ uint8_t GT1151_Init(void)
 }
 
 const uint16_t GT1151_TPX_TBL[5]={GT_TP1_REG,GT_TP2_REG,GT_TP3_REG,GT_TP4_REG,GT_TP5_REG};
-//É¨ï¿½è´¥ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Ã²ï¿½Ñ¯ï¿½ï¿½Ê½)
-//mode:0,ï¿½ï¿½ï¿½ï¿½É¨ï¿½ï¿½.
-//ï¿½ï¿½ï¿½ï¿½Öµ:ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½×´Ì¬.
-//0,ï¿½ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ï¿½ï¿½;1,ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½
+//É¨Ãè´¥ÃþÆÁ(²ÉÓÃ²éÑ¯·½Ê½)
+//mode:0,Õý³£É¨Ãè.
+//·µ»ØÖµ:µ±Ç°´¥ÆÁ×´Ì¬.
+//0,´¥ÆÁÎÞ´¥Ãþ;1,´¥ÆÁÓÐ´¥Ãþ
 uint8_t GT1151_Scan(uint8_t mode)
 {
 	uint8_t buf[4];
@@ -402,29 +392,29 @@ uint8_t GT1151_Scan(uint8_t mode)
 	uint8_t res=0;
 	uint8_t temp;
 	uint8_t tempsta;
- 	static uint8_t t=0;//ï¿½ï¿½ï¿½Æ²ï¿½Ñ¯ï¿½ï¿½ï¿½,ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½ï¿½CPUÕ¼ï¿½ï¿½ï¿½ï¿½   
+ 	static uint8_t t=0;//¿ØÖÆ²éÑ¯¼ä¸ô,´Ó¶ø½µµÍCPUÕ¼ÓÃÂÊ   
 	t++;
-	if((t%10)==0||t<10)//ï¿½ï¿½ï¿½ï¿½Ê±,Ã¿ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½CTP_Scanï¿½ï¿½ï¿½ï¿½ï¿½Å¼ï¿½ï¿½1ï¿½ï¿½,ï¿½Ó¶ï¿½ï¿½ï¿½Ê¡CPUÊ¹ï¿½ï¿½ï¿½ï¿½
+	if((t%10)==0||t<10)//¿ÕÏÐÊ±,Ã¿½øÈë10´ÎCTP_Scanº¯Êý²Å¼ì²â1´Î,´Ó¶ø½ÚÊ¡CPUÊ¹ÓÃÂÊ
 	{
-		GT1151_RD_Reg(GT_GSTID_REG,&mode,1);	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬  
+		GT1151_RD_Reg(GT_GSTID_REG,&mode,1);	//¶ÁÈ¡´¥ÃþµãµÄ×´Ì¬  
  		if(mode&0X80&&((mode&0XF)<6))
 		{
 			temp=0;
-			GT1151_WR_Reg(GT_GSTID_REG,&temp,1);//ï¿½ï¿½ï¿½Ö¾ 		
+			GT1151_WR_Reg(GT_GSTID_REG,&temp,1);//Çå±êÖ¾ 		
 		}		
 		if((mode&0XF)&&((mode&0XF)<6))
 		{
-			temp=0XFF<<(mode&0XF);	//ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½×ªï¿½ï¿½Îª1ï¿½ï¿½Î»ï¿½ï¿½,Æ¥ï¿½ï¿½tp_dev.staï¿½ï¿½ï¿½ï¿½ 
-			tempsta=tp_dev.sta;			//ï¿½ï¿½ï¿½æµ±Ç°ï¿½ï¿½tp_dev.staÖµ
+			temp=0XFF<<(mode&0XF);	//½«µãµÄ¸öÊý×ª»»Îª1µÄÎ»Êý,Æ¥Åätp_dev.sta¶¨Òå 
+			tempsta=tp_dev.sta;			//±£´æµ±Ç°µÄtp_dev.staÖµ
 			tp_dev.sta=(~temp)|TP_PRES_DOWN|TP_CATH_PRES; 
-			tp_dev.x[4]=tp_dev.x[0];	//ï¿½ï¿½ï¿½æ´¥ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			tp_dev.x[4]=tp_dev.x[0];	//±£´æ´¥µã0µÄÊý¾Ý
 			tp_dev.y[4]=tp_dev.y[0];
 			for(i=0;i<5;i++)
 			{
-				if(tp_dev.sta&(1<<i))	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§?
+				if(tp_dev.sta&(1<<i))	//´¥ÃþÓÐÐ§?
 				{
-					GT1151_RD_Reg(GT1151_TPX_TBL[i],buf,4);	//ï¿½ï¿½È¡XYï¿½ï¿½ï¿½ï¿½Öµ
-					if(tp_dev.touchtype&0X01)//ï¿½ï¿½ï¿½ï¿½
+					GT1151_RD_Reg(GT1151_TPX_TBL[i],buf,4);	//¶ÁÈ¡XY×ø±êÖµ
+					if(tp_dev.touchtype&0X01)//ºáÆÁ
 					{
 						tp_dev.x[i]=((uint16_t)buf[1]<<8)+buf[0];
 						tp_dev.y[i]=((uint16_t)buf[3]<<8)+buf[2];
@@ -438,63 +428,36 @@ uint8_t GT1151_Scan(uint8_t mode)
 				}			
 			} 
 			res=1;
-			if(tp_dev.x[0]>1024||tp_dev.y[0]>1024)//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ê³¬ï¿½ï¿½ï¿½ï¿½)
+			if(tp_dev.x[0]>1024||tp_dev.y[0]>1024)//·Ç·¨Êý¾Ý(×ø±ê³¬³öÁË)
 			{ 
-				if((mode&0XF)>1)		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ò¸´µÚ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+				if((mode&0XF)>1)		//ÓÐÆäËûµãÓÐÊý¾Ý,Ôò¸´µÚ¶þ¸ö´¥µãµÄÊý¾Ýµ½µÚÒ»¸ö´¥µã.
 				{
 					tp_dev.x[0]=tp_dev.x[1];
 					tp_dev.y[0]=tp_dev.y[1];
-					t=0;				//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½,ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-				}else					//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ô´Ë´ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Ô­Ô­ï¿½ï¿½ï¿½ï¿½)  
+					t=0;				//´¥·¢Ò»´Î,Ôò»á×îÉÙÁ¬Ðø¼à²â10´Î,´Ó¶øÌá¸ßÃüÖÐÂÊ
+				}else					//·Ç·¨Êý¾Ý,ÔòºöÂÔ´Ë´ÎÊý¾Ý(»¹Ô­Ô­À´µÄ)  
 				{
 					tp_dev.x[0]=tp_dev.x[4];
 					tp_dev.y[0]=tp_dev.y[4];
 					mode=0X80;		
-					tp_dev.sta=tempsta;	//ï¿½Ö¸ï¿½tp_dev.sta
+					tp_dev.sta=tempsta;	//»Ö¸´tp_dev.sta
 				}
-			}else t=0;							//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½,ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			}else t=0;							//´¥·¢Ò»´Î,Ôò»á×îÉÙÁ¬Ðø¼à²â10´Î,´Ó¶øÌá¸ßÃüÖÐÂÊ
 		}
 	}
-	if((mode&0X8F)==0X80)//ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ã°´ï¿½ï¿½
+	if((mode&0X8F)==0X80)//ÎÞ´¥Ãþµã°´ÏÂ
 	{ 
-		if(tp_dev.sta&TP_PRES_DOWN)	//Ö®Ç°ï¿½Ç±ï¿½ï¿½ï¿½ï¿½Âµï¿½
+		if(tp_dev.sta&TP_PRES_DOWN)	//Ö®Ç°ÊÇ±»°´ÏÂµÄ
 		{
-			tp_dev.sta&=~(1<<7);	//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½É¿ï¿½
-		}else						//Ö®Ç°ï¿½ï¿½Ã»ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½
+			tp_dev.sta&=~(1<<7);	//±ê¼Ç°´¼üËÉ¿ª
+		}else						//Ö®Ç°¾ÍÃ»ÓÐ±»°´ÏÂ
 		{ 
 			tp_dev.x[0]=0xffff;
 			tp_dev.y[0]=0xffff;
-			tp_dev.sta&=0XE0;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½	
+			tp_dev.sta&=0XE0;	//Çå³ýµãÓÐÐ§±ê¼Ç	
 		}	 
 	} 	
-	if(t>240)t=10;//ï¿½ï¿½ï¿½Â´ï¿½10ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+	if(t>240)t=10;//ÖØÐÂ´Ó10¿ªÊ¼¼ÆÊý
 	return res;
 }
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
