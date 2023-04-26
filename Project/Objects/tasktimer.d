@@ -1,0 +1,43 @@
+.\objects\tasktimer.o: ..\Hardware\TaskTimer\taskTimer.c
+.\objects\tasktimer.o: ..\Hardware\TaskTimer\taskTimer.h
+.\objects\tasktimer.o: ..\Firmware\CMSIS\GD\GD32F4xx\Include\gd32f4xx.h
+.\objects\tasktimer.o: ..\Firmware\CMSIS\core_cm4.h
+.\objects\tasktimer.o: E:\Program Files (x86)\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\tasktimer.o: ..\Firmware\CMSIS\core_cmInstr.h
+.\objects\tasktimer.o: ..\Firmware\CMSIS\core_cmFunc.h
+.\objects\tasktimer.o: ..\Firmware\CMSIS\core_cm4_simd.h
+.\objects\tasktimer.o: ..\Firmware\CMSIS\GD\GD32F4xx\Include\system_gd32f4xx.h
+.\objects\tasktimer.o: ..\User\gd32f4xx_libopt.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_rcu.h
+.\objects\tasktimer.o: ..\Firmware\CMSIS\GD\GD32F4xx\Include\gd32f4xx.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_adc.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_can.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_crc.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_ctc.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_dac.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_dbg.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_dci.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_dma.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_exti.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_fmc.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_fwdgt.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_gpio.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_syscfg.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_i2c.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_iref.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_pmu.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_rtc.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_sdio.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_spi.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_timer.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_trng.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_usart.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_wwdgt.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_misc.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_enet.h
+.\objects\tasktimer.o: E:\Program Files (x86)\Keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_exmc.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_ipa.h
+.\objects\tasktimer.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_tli.h
+.\objects\tasktimer.o: ..\User\systick.h
+.\objects\tasktimer.o: E:\Program Files (x86)\Keil5\ARM\ARMCC\Bin\..\include\stdio.h

@@ -1,0 +1,45 @@
+.\objects\tftlcd_init.o: ..\Hardware\FSMC8080\TFTLCD_Init.c
+.\objects\tftlcd_init.o: ..\Hardware\FSMC8080\TFTLCD_Init.h
+.\objects\tftlcd_init.o: ..\Firmware\CMSIS\GD\GD32F4xx\Include\gd32f4xx.h
+.\objects\tftlcd_init.o: ..\Firmware\CMSIS\core_cm4.h
+.\objects\tftlcd_init.o: E:\Program Files (x86)\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\tftlcd_init.o: ..\Firmware\CMSIS\core_cmInstr.h
+.\objects\tftlcd_init.o: ..\Firmware\CMSIS\core_cmFunc.h
+.\objects\tftlcd_init.o: ..\Firmware\CMSIS\core_cm4_simd.h
+.\objects\tftlcd_init.o: ..\Firmware\CMSIS\GD\GD32F4xx\Include\system_gd32f4xx.h
+.\objects\tftlcd_init.o: ..\User\gd32f4xx_libopt.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_rcu.h
+.\objects\tftlcd_init.o: ..\Firmware\CMSIS\GD\GD32F4xx\Include\gd32f4xx.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_adc.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_can.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_crc.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_ctc.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_dac.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_dbg.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_dci.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_dma.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_exti.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_fmc.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_fwdgt.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_gpio.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_syscfg.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_i2c.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_iref.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_pmu.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_rtc.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_sdio.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_spi.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_timer.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_trng.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_usart.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_wwdgt.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_misc.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_enet.h
+.\objects\tftlcd_init.o: E:\Program Files (x86)\Keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_exmc.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_ipa.h
+.\objects\tftlcd_init.o: ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_tli.h
+.\objects\tftlcd_init.o: ..\User\systick.h
+.\objects\tftlcd_init.o: E:\Program Files (x86)\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\tftlcd_init.o: ..\Hardware\FSMC8080\lcd9841.h
+.\objects\tftlcd_init.o: ..\Hardware\FSMC8080\lcd9841.h

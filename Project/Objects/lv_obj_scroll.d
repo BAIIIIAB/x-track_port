@@ -1,0 +1,14 @@
+.\objects\lv_obj_scroll.o: ..\Middleware\LVGL\GUI\lvgl\src\core\lv_obj_scroll.c
+.\objects\lv_obj_scroll.o: ..\Middleware\LVGL\GUI\lvgl\src\core\lv_obj_scroll.h
+.\objects\lv_obj_scroll.o: ..\Middleware\LVGL\GUI\lvgl\src\core\../misc/lv_area.h
+.\objects\lv_obj_scroll.o: ..\Middleware\LVGL\GUI\lvgl\src\core\../misc/../lv_conf_internal.h
+.\objects\lv_obj_scroll.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\lv_obj_scroll.o: ..\Middleware\LVGL\GUI\lvgl\src\core\../misc/../lv_conf_kconfig.h
+.\objects\lv_obj_scroll.o: ..\Middleware\LVGL\GUI\lvgl\examples\porting\../../lv_conf.h
+.\objects\lv_obj_scroll.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\lv_obj_scroll.o: ..\Middleware\LVGL\GUI\lvgl\src\core\../misc/lv_anim.h
+.\objects\lv_obj_scroll.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\lv_obj_scroll.o: ..\Middleware\LVGL\GUI\lvgl\src\core\lv_obj.h
+.\objects\lv_obj_scroll.o: ..\Middleware\LVGL\GUI\lvgl\src\core\../misc/lv_style.h
+.\objects\lv_obj_scroll.o: ..\Middleware\LVGL\GUI\lvgl\src\core\../misc/../font/lv_font.h
+.\objects\lv_obj_scroll.o: ..\Middleware\LVGL\GUI\lvgl\src\core\../misc/../font/lv_symbol_def.h
