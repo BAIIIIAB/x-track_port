@@ -40,9 +40,9 @@
 #define VERTICAL_FRONT_PORCH          15
 
 
-extern uint16_t *ltdc_framebuf[2];              
-extern uint16_t ltdc_lcd_framebuf0[800][480];              
-extern uint16_t ltdc_lcd_framebuf1[800][480]; 
+//extern uint16_t *ltdc_framebuf[2];              
+//extern uint16_t ltdc_lcd_framebuf0[800][480];              
+//extern uint16_t ltdc_lcd_framebuf1[800][480]; 
 
 
 //������ɫ
@@ -102,10 +102,10 @@ int b_VERTICAL_FRONT_PORCH        );
 ////////////////
 void LCD_Init(void);//��Ļ��ʼ��
 ////////////////
-void LTDC_Draw_Point(uint8_t layer, uint16_t x, uint16_t y, uint32_t color);/////����
-void LCD_Clear(uint8_t layer,uint16_t  color);//��������   
-void LCD_ShowChar(uint8_t layer,uint16_t x,uint16_t y,uint8_t num,uint8_t size,uint8_t mode);////��ָ��λ����ʾһ���ַ�
-void LCD_ShowString(uint8_t layer,uint16_t x,uint16_t y,uint16_t width,uint16_t height,uint8_t size,uint8_t mode,uint8_t *p);//��ʾ�ַ���
+//void LTDC_Draw_Point(uint8_t layer, uint16_t x, uint16_t y, uint32_t color);/////����
+//void LCD_Clear(uint8_t layer,uint16_t  color);//��������   
+//void LCD_ShowChar(uint8_t layer,uint16_t x,uint16_t y,uint8_t num,uint8_t size,uint8_t mode);////��ָ��λ����ʾһ���ַ�
+//void LCD_ShowString(uint8_t layer,uint16_t x,uint16_t y,uint16_t width,uint16_t height,uint8_t size,uint8_t mode,uint8_t *p);//��ʾ�ַ���
 
 #endif  
 

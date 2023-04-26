@@ -27,48 +27,11 @@ Project File Date:  04/26/2023
 <h2>Output:</h2>
 *** Using Compiler 'V6.15', folder: 'E:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-../User/main.c(52): warning: passing 'char [18]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types with different sign [-Wpointer-sign]
-    LCD_ShowString(1,30,50,480,80,24,1,"https://lckfb.com");
-                                       ^~~~~~~~~~~~~~~~~~~
-../Hardware/LCD\lcd.h(108): note: passing argument to parameter 'p' here
-void LCD_ShowString(uint8_t layer,uint16_t x,uint16_t y,uint16_t width,uint16_t height,uint8_t size,uint8_t mode,uint8_t *p);//��ʾ�ַ���
-                                                                                                                          ^
-../User/main.c(53): warning: passing 'char [15]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types with different sign [-Wpointer-sign]
-    LCD_ShowString(1,30,80,480,110,24,1,"touch test....");
-                                        ^~~~~~~~~~~~~~~~
-../Hardware/LCD\lcd.h(108): note: passing argument to parameter 'p' here
-void LCD_ShowString(uint8_t layer,uint16_t x,uint16_t y,uint16_t width,uint16_t height,uint8_t size,uint8_t mode,uint8_t *p);//��ʾ�ַ���
-                                                                                                                          ^
-2 warnings generated.
 compiling main.c...
-../Middleware/LVGL/GUI/lvgl/examples/porting/lv_port_indev.c(191): warning: implicit declaration of function 'touch_scan' is invalid in C99 [-Wimplicit-function-declaration]
-    if(touch_scan()) {
-       ^
-../Middleware/LVGL/GUI/lvgl/examples/porting/lv_port_indev.c(193): error: use of undeclared identifier 'data'
-        data->state = LV_INDEV_STATE_PR;
-        ^
-../Middleware/LVGL/GUI/lvgl/examples/porting/lv_port_indev.c(195): error: use of undeclared identifier 'data'
-        data->state = LV_INDEV_STATE_REL;
-        ^
-../Middleware/LVGL/GUI/lvgl/examples/porting/lv_port_indev.c(198): error: use of undeclared identifier 'data'
-    data->point.x = last_x;
-    ^
-../Middleware/LVGL/GUI/lvgl/examples/porting/lv_port_indev.c(199): error: use of undeclared identifier 'data'
-    data->point.y = last_y;
-    ^
-../Middleware/LVGL/GUI/lvgl/examples/porting/lv_port_indev.c(233): warning: implicit declaration of function 'touch_coordinate_x_get' is invalid in C99 [-Wimplicit-function-declaration]
-    (*x) = touch_coordinate_x_get(touch_ad_x);
-           ^
-../Middleware/LVGL/GUI/lvgl/examples/porting/lv_port_indev.c(234): warning: implicit declaration of function 'touch_coordinate_y_get' is invalid in C99 [-Wimplicit-function-declaration]
-    (*y) = LCD_Y - touch_coordinate_y_get(touch_ad_y);
-                   ^
-../Middleware/LVGL/GUI/lvgl/examples/porting/lv_port_indev.c(234): error: use of undeclared identifier 'LCD_Y'
-    (*y) = LCD_Y - touch_coordinate_y_get(touch_ad_y);
-           ^
-3 warnings and 5 errors generated.
-compiling lv_port_indev.c...
-compiling touch.c...
-".\Objects\GD32F470.axf" - 5 Error(s), 5 Warning(s).
+linking...
+Program Size: Code=174560 RO-data=22432 RW-data=3072160 ZI-data=113064  
+FromELF: creating hex file...
+".\Objects\GD32F470.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -81,8 +44,7 @@ Package Vendor: GigaDevice
   E:\Keil_v5\Packs\GigaDevice\GD32F4xx_DFP\3.0.4\Device\F4XX\Include
 
 <h2>Collection of Component Files used:</h2>
-Target not created.
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:08
 </pre>
 </body>
 </html>

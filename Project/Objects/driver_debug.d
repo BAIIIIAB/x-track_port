@@ -37,5 +37,5 @@
   ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_exmc.h \
   ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_ipa.h \
   ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_tli.h \
-  ..\User\systick.h ..\Hardware\DEBUG\driver_dma.h \
+  ..\User\systick.h ..\Hardware\DMA\driver_dma.h \
   E:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h

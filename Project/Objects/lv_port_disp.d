@@ -239,4 +239,4 @@
   ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_exmc.h \
   ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_ipa.h \
   ..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_tli.h \
-  ..\Hardware\LCD\lcd.h ..\User\systick.h
+  ..\Hardware\LCD\lcd.h ..\User\systick.h ..\Hardware\DMA\driver_dma.h

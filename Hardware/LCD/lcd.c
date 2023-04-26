@@ -7,8 +7,6 @@
 uint16_t  POINT_COLOR=0x0000;	//画笔颜色
 uint16_t  BACK_COLOR=0xFFFF;  //背景色 
 
-
-
 typedef struct
 {
   uint32_t n;
@@ -20,10 +18,10 @@ typedef struct
 TLI_CLK_t tli_clk;
 
 // LCD对应外部SDRAM地址
-#define LCD_FRAME_BUF_ADDR 0XC0000000
-uint16_t *ltdc_framebuf[2];                                                                    //
-uint16_t ltdc_lcd_framebuf0[800][480] __attribute__((at(LCD_FRAME_BUF_ADDR)));                 //图层0
-uint16_t ltdc_lcd_framebuf1[800][480] __attribute__((at(LCD_FRAME_BUF_ADDR + 800 * 480 * 2))); //图层1
+//#define LCD_FRAME_BUF_ADDR 0XC0000000
+//uint16_t *ltdc_framebuf[2];                                                                    //
+//uint16_t ltdc_lcd_framebuf0[800][480] __attribute__((at(LCD_FRAME_BUF_ADDR)));                 //图层0
+//uint16_t ltdc_lcd_framebuf1[800][480] __attribute__((at(LCD_FRAME_BUF_ADDR + 800 * 480 * 2))); //图层1
 
 
 void mDelayuS(uint16_t us)
@@ -1124,8 +1122,8 @@ void TLI_ConfigParam(
     tli_layer_init_struct.layer_acf1 = LAYER_ACF1_SA;
     tli_layer_init_struct.layer_acf2 = LAYER_ACF2_SA;
     /* TLI layer frame buffer base address configuration */
-    ltdc_framebuf[0] = (uint16_t *)&ltdc_lcd_framebuf0;
-    tli_layer_init_struct.layer_frame_bufaddr = (uint32_t)ltdc_framebuf[0];
+//    ltdc_framebuf[0] = (uint16_t *)&ltdc_lcd_framebuf0;
+//    tli_layer_init_struct.layer_frame_bufaddr = (uint32_t)ltdc_framebuf[0];
 
     //  tli_layer_init_struct.layer_frame_bufaddr = (uint32_t)&gImage_Image_RGB565;
 
@@ -1152,10 +1150,10 @@ void TLI_ConfigParam(
     tli_layer_init_struct.layer_acf1 = LAYER_ACF1_SA;
     tli_layer_init_struct.layer_acf2 = LAYER_ACF2_SA;
     /* TLI layer frame buffer base address configuration */
-    ltdc_framebuf[1] = (uint16_t *)&ltdc_lcd_framebuf1;
+//    ltdc_framebuf[1] = (uint16_t *)&ltdc_lcd_framebuf1;
 
     //  memcpy(ltdc_lcd_framebuf1, gImage_Image_RGB565, sizeof(gImage_Image_RGB565));
-    tli_layer_init_struct.layer_frame_bufaddr = (uint32_t)ltdc_framebuf[1];
+//    tli_layer_init_struct.layer_frame_bufaddr = (uint32_t)ltdc_framebuf[1];
 
     //  tli_layer_init_struct.layer_frame_bufaddr = (uint32_t)&gImage_Image_RGB565;
     tli_layer_init_struct.layer_frame_line_length = ((ACTIVE_WIDTH * 2) + 3);
@@ -1184,93 +1182,79 @@ void LCD_Init(void)
     TLI_ConfigParam(0,0,0,0,0,0);
     printf("LCD_Init Over! \r\n");
     
-    LCD_Clear(1,WHITE);
+    //LCD_Clear(1,WHITE);
     LCD_BLK_ON;
 }
 
 
 /////画点
-void LTDC_Draw_Point(uint8_t layer, uint16_t x, uint16_t y, uint32_t color)
-{
-    *(uint16_t *)((uint32_t)ltdc_framebuf[layer] + 2 * (ACTIVE_WIDTH * (y) + x)) = color;
-}
+//void LTDC_Draw_Point(uint8_t layer, uint16_t x, uint16_t y, uint32_t color)
+//{
+//    *(uint16_t *)((uint32_t)ltdc_framebuf[layer] + 2 * (ACTIVE_WIDTH * (y) + x)) = color;
+//}
 //清屏函数   
-void LCD_Clear(uint8_t layer,uint16_t  color)
-{
-    uint32_t index=0;
-    uint32_t totalpoint=ACTIVE_WIDTH;
-    totalpoint*=ACTIVE_HEIGHT; //得到总点数
-    for(index=0;index<totalpoint;index++)
-    {
-        ltdc_framebuf[layer][index] = color;
-    }
-} 
+//void LCD_Clear(uint8_t layer,uint16_t  color)
+//{
+//    uint32_t index=0;
+//    uint32_t totalpoint=ACTIVE_WIDTH;
+//    totalpoint*=ACTIVE_HEIGHT; //得到总点数
+//    for(index=0;index<totalpoint;index++)
+//    {
+//        ltdc_framebuf[layer][index] = color;
+//    }
+//} 
 
 //在指定位置显示一个字符
 //x,y:起始坐标
 //num:要显示的字符:" "--->"~"
 //size:字体大小 12/16/24
 //mode:叠加方式(1)还是非叠加方式(0)
-void LCD_ShowChar(uint8_t layer,uint16_t x,uint16_t y,uint8_t num,uint8_t size,uint8_t mode)
-{  
-    uint8_t temp,t1,t;
-    uint16_t y0=y;
-    uint8_t csize=(size/8+((size%8)?1:0))*(size/2);		//得到字体一个字符对应点阵集所占的字节数	
-    num=num-' ';//得到偏移后的值（ASCII字库是从空格开始取模，所以-' '就是对应字符的字库）
-    for(t=0;t<csize;t++)
-    {   
-        if(size==12)temp=asc2_1206[num][t]; 	 	//调用1206字体
-        else if(size==16)temp=asc2_1608[num][t];	//调用1608字体
-        else if(size==24)temp=asc2_2412[num][t];	//调用2412字体
-        else return;								//没有的字库
-        for(t1=0;t1<8;t1++)
-        {			    
-            if(temp&0x80)LTDC_Draw_Point(layer,x,y,POINT_COLOR);
-            else if(mode==0)LTDC_Draw_Point(layer,x,y,BACK_COLOR);
-            temp<<=1;
-            y++;
-            if(y>=ACTIVE_HEIGHT)return;		//超区域了
-            if((y-y0)==size)
-            {
-                y=y0;
-                x++;
-                if(x>=ACTIVE_WIDTH)return;	//超区域了
-                break;
-            }
-        }  	 
-    }  
-}   
+//void LCD_ShowChar(uint8_t layer,uint16_t x,uint16_t y,uint8_t num,uint8_t size,uint8_t mode)
+//{  
+//    uint8_t temp,t1,t;
+//    uint16_t y0=y;
+//    uint8_t csize=(size/8+((size%8)?1:0))*(size/2);		//得到字体一个字符对应点阵集所占的字节数	
+//    num=num-' ';//得到偏移后的值（ASCII字库是从空格开始取模，所以-' '就是对应字符的字库）
+//    for(t=0;t<csize;t++)
+//    {   
+//        if(size==12)temp=asc2_1206[num][t]; 	 	//调用1206字体
+//        else if(size==16)temp=asc2_1608[num][t];	//调用1608字体
+//        else if(size==24)temp=asc2_2412[num][t];	//调用2412字体
+//        else return;								//没有的字库
+//        for(t1=0;t1<8;t1++)
+//        {			    
+//            if(temp&0x80)LTDC_Draw_Point(layer,x,y,POINT_COLOR);
+//            else if(mode==0)LTDC_Draw_Point(layer,x,y,BACK_COLOR);
+//            temp<<=1;
+//            y++;
+//            if(y>=ACTIVE_HEIGHT)return;		//超区域了
+//            if((y-y0)==size)
+//            {
+//                y=y0;
+//                x++;
+//                if(x>=ACTIVE_WIDTH)return;	//超区域了
+//                break;
+//            }
+//        }  	 
+//    }  
+//}   
 //显示字符串
 //x,y:起点坐标
 //width,height:区域大小  
 //size:字体大小
 //*p:字符串起始地址		  
-void LCD_ShowString(uint8_t layer,uint16_t x,uint16_t y,uint16_t width,uint16_t height,uint8_t size,uint8_t mode,uint8_t *p)
-{         
-	uint8_t x0=x;
-	width+=x;
-	height+=y;
-    while((*p<='~')&&(*p>=' '))//判断是不是非法字符!
-    {       
-        if(x>=width){x=x0;y+=size;}
-        if(y>=height)break;//退出
-        LCD_ShowChar(layer,x,y,*p,size,mode);
-        x+=size/2;
-        p++;
-    }  
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//void LCD_ShowString(uint8_t layer,uint16_t x,uint16_t y,uint16_t width,uint16_t height,uint8_t size,uint8_t mode,uint8_t *p)
+//{         
+//	uint8_t x0=x;
+//	width+=x;
+//	height+=y;
+//    while((*p<='~')&&(*p>=' '))//判断是不是非法字符!
+//    {       
+//        if(x>=width){x=x0;y+=size;}
+//        if(y>=height)break;//退出
+//        LCD_ShowChar(layer,x,y,*p,size,mode);
+//        x+=size/2;
+//        p++;
+//    }  
+//}
 

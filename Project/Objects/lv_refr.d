@@ -81,4 +81,11 @@
   ..\Middleware\LVGL\GUI\lvgl\src\core\..\misc\..\draw\lv_img_cache.h \
   ..\Middleware\LVGL\GUI\lvgl\src\core\..\misc\..\draw\lv_draw_mask.h \
   ..\Middleware\LVGL\GUI\lvgl\src\core\..\misc\..\core\lv_obj_pos.h \
-  ..\Middleware\LVGL\GUI\lvgl\src\core\..\font\lv_font_fmt_txt.h
+  ..\Middleware\LVGL\GUI\lvgl\src\core\..\font\lv_font_fmt_txt.h \
+  ..\Middleware\LVGL\GUI\lvgl\src\core\..\widgets\lv_label.h \
+  ..\Middleware\LVGL\GUI\lvgl\src\core\..\widgets\..\lv_conf_internal.h \
+  ..\Middleware\LVGL\GUI\lvgl\src\core\..\widgets\..\core\lv_obj.h \
+  ..\Middleware\LVGL\GUI\lvgl\src\core\..\widgets\..\font\lv_font.h \
+  ..\Middleware\LVGL\GUI\lvgl\src\core\..\widgets\..\font\lv_symbol_def.h \
+  ..\Middleware\LVGL\GUI\lvgl\src\core\..\widgets\..\misc\lv_txt.h \
+  ..\Middleware\LVGL\GUI\lvgl\src\core\..\widgets\..\draw\lv_draw.h

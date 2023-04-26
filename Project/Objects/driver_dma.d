@@ -1,5 +1,5 @@
-./objects/driver_dma.o: ..\Hardware\DEBUG\driver_dma.c \
-  ..\Hardware\DEBUG\driver_dma.h \
+./objects/driver_dma.o: ..\Hardware\DMA\driver_dma.c \
+  ..\Hardware\DMA\driver_dma.h \
   ..\Firmware\CMSIS\GD\GD32F4xx\Include\gd32f4xx.h \
   ..\Firmware\CMSIS\core_cm4.h \
   E:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \

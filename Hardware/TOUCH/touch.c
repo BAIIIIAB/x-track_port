@@ -217,9 +217,7 @@ uint16_t CRC16(uint8_t *srcdata,uint16_t length)
 
 
 void check_sum(void)
-	
 {
-	
 	uint16_t checksum=0;
 	uint8_t checksumH,checksumL;
 	uint8_t i=0;	
@@ -233,8 +231,6 @@ void check_sum(void)
 	printf("chksum:0x%X,\r\n",checksum);
 	printf("chksumH:0x%X,\r\n",checksumH);
 	printf("chksumL:0x%X,\r\n",checksumL);
-	
-		
 }
 
 //·¢ËÍGT1151ÅäÖÃ²ÎÊı

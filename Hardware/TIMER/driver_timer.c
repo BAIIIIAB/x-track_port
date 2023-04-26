@@ -1,3 +1,11 @@
+#include "driver_timer.h"
+
+/*
+ * TIMER6为LVGL提供tick
+ * TIMER6为LVGL提供tick
+ * TIMER6为LVGL提供tick
+ */
+
 /* this function handles Timer6 Handler exception */
 void TIMER6_IRQHandler(void)
 {
@@ -8,7 +16,7 @@ void TIMER6_IRQHandler(void)
         lv_tick_inc(1);
     }
 }
-void timer6_config()
+void TIMER6_Init()
 {
     /* ----------------------------------------------------------------------------
     TIMER6 Configuration: 
@@ -30,5 +38,7 @@ void timer6_config()
     timer_enable(TIMER6);
     timer_interrupt_flag_clear(TIMER6, TIMER_INT_FLAG_UP);
     timer_interrupt_enable(TIMER6, TIMER_INT_UP);
-} 
+
     nvic_irq_enable(TIMER6_IRQn, 1, 1);
+} 
+    

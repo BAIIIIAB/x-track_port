@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,GD32F470</Define>
               <Undefine></Undefine>
-              <IncludePath>..\User;..\Firmware\CMSIS;..\Firmware\CMSIS\GD\GD32F4xx\Include;..\Firmware\GD32F4xx_standard_peripheral\Include;..\Hardware\LED;..\Hardware\LCD;..\Hardware\SDRAM;..\Hardware\DEBUG;..\Hardware\KEY;..\Hardware\TOUCH;..\Hardware\SDCARD;..\App;..\Middleware\LVGL\GUI\lvgl;..\Middleware\LVGL\GUI\lvgl\src;..\Middleware\LVGL\GUI\lvgl\examples\porting</IncludePath>
+              <IncludePath>..\User;..\App;..\Firmware\CMSIS;..\Firmware\CMSIS\GD\GD32F4xx\Include;..\Firmware\GD32F4xx_standard_peripheral\Include;..\Hardware\LED;..\Hardware\LCD;..\Hardware\SDRAM;..\Hardware\DEBUG;..\Hardware\KEY;..\Hardware\TOUCH;..\Hardware\DMA;..\Hardware\SDCARD;..\Hardware\TIMER;..\Middleware\LVGL\GUI\lvgl;..\Middleware\LVGL\GUI\lvgl\src;..\Middleware\LVGL\GUI\lvgl\examples\porting;..\Middleware\LVGL\GUI_APP\demos\music;..\Middleware\LVGL\GUI_APP\demos</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -534,14 +534,19 @@
               <FilePath>..\Hardware\DEBUG\driver_debug.c</FilePath>
             </File>
             <File>
-              <FileName>driver_dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Hardware\DEBUG\driver_dma.c</FilePath>
-            </File>
-            <File>
               <FileName>sdcard.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\SDCARD\sdcard.c</FilePath>
+            </File>
+            <File>
+              <FileName>driver_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\TIMER\driver_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>driver_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\DMA\driver_dma.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1202,11 +1207,6 @@
               <FilePath>..\Middleware\LVGL\GUI\lvgl\src\widgets\lv_btnmatrix.c</FilePath>
             </File>
             <File>
-              <FileName>lv_canvas.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middleware\LVGL\GUI\lvgl\src\widgets\lv_canvas.c</FilePath>
-            </File>
-            <File>
               <FileName>lv_checkbox.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Middleware\LVGL\GUI\lvgl\src\widgets\lv_checkbox.c</FilePath>
@@ -1267,9 +1267,239 @@
           <GroupName>lv_example</GroupName>
           <Files>
             <File>
-              <FileName>lv_demo_widgets.c</FileName>
+              <FileName>lv_demo_music.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middleware\LVGL\demos\widgets\lv_demo_widgets.c</FilePath>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\lv_demo_music.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_demo_music_list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\lv_demo_music_list.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_demo_music_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\lv_demo_music_main.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_corner_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_corner_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_list_pause.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_list_pause.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_list_pause_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_list_pause_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_list_play.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_list_play.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_list_play_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_list_play_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_loop.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_loop.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_loop_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_loop_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_next.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_next.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_next_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_next_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_pause.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_pause.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_pause_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_pause_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_play.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_play.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_play_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_play_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_prev.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_prev.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_prev_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_prev_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_rnd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_rnd.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_btn_rnd_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_btn_rnd_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_corner_left.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_corner_left.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_corner_left_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_corner_left_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_corner_right.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_corner_right.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_corner_right_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_corner_right_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_cover_1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_cover_1.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_cover_1_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_cover_1_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_cover_2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_cover_2.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_cover_2_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_cover_2_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_cover_3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_cover_3.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_cover_3_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_cover_3_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_icon_1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_icon_1.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_icon_1_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_icon_1_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_icon_2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_icon_2.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_icon_2_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_icon_2_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_icon_3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_icon_3.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_icon_3_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_icon_3_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_icon_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_icon_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_icon_4_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_icon_4_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_list_border.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_list_border.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_list_border_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_list_border_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_logo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_logo.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_slider_knob.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_slider_knob.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_slider_knob_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_slider_knob_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_wave_bottom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_wave_bottom.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_wave_bottom_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_wave_bottom_large.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_wave_top.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_wave_top.c</FilePath>
+            </File>
+            <File>
+              <FileName>img_lv_demo_music_wave_top_large.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middleware\LVGL\GUI_APP\demos\music\assets\img_lv_demo_music_wave_top_large.c</FilePath>
             </File>
           </Files>
         </Group>
